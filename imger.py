@@ -24,5 +24,6 @@ for file in files:
                 if '.png' not in candidate:
                     img['src'] = f'/species/imgs/{candidate}'
                     break
-        with open(f'test/{file}', 'w') as f:
+        img['style'] = "max-width: 100%; height: auto; display: block;"
+        with open(f'{file}', 'w') as f:
             f.write(str(soup))
