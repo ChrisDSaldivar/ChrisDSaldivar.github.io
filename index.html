@@ -6,7 +6,11 @@
     <title>Document</title>
   </head>
   <body>
-    <select name="speciesOptions" id="speciesOptions"></select>
+    <select
+      name="speciesOptions"
+      id="speciesOptions"
+      style="width: 100%"
+    ></select>
     <div id="species" class="static-container-details"></div>
   </body>
   <script defer>
@@ -79,5 +83,8 @@
     document
       .getElementById("speciesOptions")
       .dispatchEvent(new Event("change"));
+    setInterval(() => {
+      document.querySelector(".nav-select").style = "display: none";
+    }, 10000);
   </script>
 </html>
