@@ -64,7 +64,7 @@
       .join("");
 
     document.getElementById("speciesOptions").addEventListener("change", () => {
-      const url = document.getElementById("speciesOptions").value;
+      const url = `species/${document.getElementById("speciesOptions").value}`;
       fetch(url)
         .then((response) => response.text())
         .then((html) => {
