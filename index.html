@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="speciesOptions" id="speciesOptions"></select>
+    <div id="species" class="static-container-details"></div>
+  </body>
+  <script defer>
+    const speciesOptions = [
+      ["aarakocra", "aarakocra.html"],
+      ["aasimar", "aasimar.html"],
+      ["air-genasi", "air-genasi.html"],
+      ["bugbear", "bugbear.html"],
+      ["centaur", "centaur.html"],
+      ["changeling", "changeling.html"],
+      ["deep-gnome", "deep-gnome.html"],
+      ["dragonborn", "dragonborn.html"],
+      ["duergar", "duergar.html"],
+      ["dwarf", "dwarf.html"],
+      ["earth-genasi", "earth-genasi.html"],
+      ["eladrin", "eladrin.html"],
+      ["elf", "elf.html"],
+      ["fairy", "fairy.html"],
+      ["feral-tiefling", "feral-tiefling.html"],
+      ["firbolg", "firbolg.html"],
+      ["fire-genasi", "fire-genasi.html"],
+      ["githyanki", "githyanki.html"],
+      ["githzerai", "githzerai.html"],
+      ["gnome", "gnome.html"],
+      ["goblin", "goblin.html"],
+      ["goliath", "goliath.html"],
+      ["halfling", "halfling.html"],
+      ["harengon", "harengon.html"],
+      ["hobgoblin", "hobgoblin.html"],
+      ["human", "human.html"],
+      ["kobold", "kobold.html"],
+      ["lizardfolk", "lizardfolk.html"],
+      ["minotaur", "minotaur.html"],
+      // ["orc (1)", "orc (1).html"],
+      ["orc", "orc.html"],
+      ["satyr", "satyr.html"],
+      ["sea-elf", "sea-elf.html"],
+      ["shadar-kai", "shadar-kai.html"],
+      ["shifter", "shifter.html"],
+      ["tabaxi", "tabaxi.html"],
+      ["tiefling", "tiefling.html"],
+      ["tortle", "tortle.html"],
+      ["triton", "triton.html"],
+      ["water-genasi", "water-genasi.html"],
+      ["yuan-ti", "yuan-ti.html"],
+    ];
+    document.getElementById("speciesOptions").innerHTML = speciesOptions
+      .map(
+        ([species, url]) =>
+          `<option value="${url}">${species
+            .split("-")
+            .map((word) => word[0].toUpperCase() + word.slice(1))
+            .join(" ")}</option>`
+      )
+      .join("");
+
+    document.getElementById("speciesOptions").addEventListener("change", () => {
+      const url = document.getElementById("speciesOptions").value;
+      fetch(url)
+        .then((response) => response.text())
+        .then((html) => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+          const species = doc.querySelector(".static-container-details");
+          document.getElementById("species").innerHTML = species.innerHTML;
+        });
+    });
+  </script>
+</html>
