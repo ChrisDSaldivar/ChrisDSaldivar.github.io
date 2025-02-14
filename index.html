@@ -37,7 +37,9 @@
       ["harengon", "harengon.html"],
       ["hobgoblin", "hobgoblin.html"],
       ["human", "human.html"],
+      ["kenku", "kenku.html"],
       ["kobold", "kobold.html"],
+      ["leonin", "leonin.html"],
       ["lizardfolk", "lizardfolk.html"],
       ["minotaur", "minotaur.html"],
       // ["orc (1)", "orc (1).html"],
@@ -74,5 +76,9 @@
           document.getElementById("species").innerHTML = species.innerHTML;
         });
     });
+
+    document
+      .getElementById("speciesOptions")
+      .dispatchEvent(new Event("change"));
   </script>
 </html>
